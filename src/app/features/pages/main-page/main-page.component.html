@@ -1,0 +1,133 @@
+<div class="main-page">
+<div class="app">
+  <div class="conversations">
+    <div class="heading">
+      <div class="user">
+        <div class="avatar">
+          <img src="assets/images/portrait1.jpg" alt="img">
+          <div class="status">
+
+          </div>
+        </div>
+        <div class="name">
+           <p>Good Morning</p>
+           <p>Michele Laurene</p>
+        </div>
+      </div>
+
+      <div class="actions">
+         <button>
+          <mat-icon svgIcon="plus"></mat-icon>
+         </button>
+         <button>
+          <mat-icon class="bell" svgIcon="bell"></mat-icon>
+          <div class="notification"></div>
+         </button>
+         <button>
+          <mat-icon svgIcon="search"></mat-icon>
+         </button>
+      </div>
+    </div>
+
+    <div class="users-conversation">
+       <div autofocus class="conversation-item" *ngFor="let item of conversationItems">
+      <div class="image">
+        <div class="avatar">
+          <img src="assets/images/portrait1.jpg" alt="img">
+          <div class="status"></div>
+        </div>
+        <div class="name">
+          <p>Candie Bosley</p>
+          <p>Hi, this is process update</p>
+        </div>
+      </div>
+      <div class="time">
+         <p>09:59</p>
+         <div class="badge">
+            <p>1</p>
+         </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="single-conversation">
+    <div class="heading">
+      <div class="user">
+        <div class="avatar">
+          <img src="assets/images/portrait1.jpg" alt="img">
+          <div class="status" *ngIf="false">
+
+          </div>
+        </div>
+        <div class="name">
+           <p>Candy Bosley</p>
+           <p>Last seen Yesterday at 02.30PM</p>
+        </div>
+      </div>
+
+      <div class="actions">
+         <button>
+          <mat-icon svgIcon="search"></mat-icon>
+         </button>
+         <button>
+          <mat-icon svgIcon="phone"></mat-icon>
+         </button>
+         <button>
+          <mat-icon svgIcon="ellipsis-vertical"></mat-icon>
+         </button>
+      </div>
+    </div>
+
+    <div class="messages">
+      <div class="user">
+       <div class="about">
+        <img src="assets/images/portrait1.jpg" alt="img">
+        <div class="name">
+         <p>Candy Bosley</p>
+         <p>08.00 AM</p>
+        </div>
+       </div>
+
+       <div class="message">
+        <p>Hi, this is progress updates for this week</p><br>
+        <p>Don't you feel bored? Let's go in vacantion tomorrow</p>
+       </div>
+      </div>
+
+      <div class="user-response">
+        <div class="about">   
+          <div class="name">
+           <p>You</p>
+           <p>09.45 AM</p>
+          </div>
+          <img src="assets/images/portrait1.jpg" alt="img">
+        </div>
+ 
+        <div class="message">
+         <p>Ok, thanks for the progress update</p><br>
+         <p>Wow, that's awsome, realy, where are we going on vacation?</p>
+        </div>
+       </div>
+
+       <div class="user">
+        <div class="about">
+          <img src="assets/images/portrait1.jpg" alt="img">
+        <div class="name">
+         <p>Candy Bosley</p>
+         <p>15.50 PM</p>
+        </div>
+        </div>
+ 
+        <div class="message">
+         <p>I have a good idea, how about we see the green scenary in my grandmother's hometown, so we can fresh there</p>
+         <div class="image-attachment">
+           <img src="" alt="img">
+           <img src="" alt="img">
+         </div>
+        </div>
+       </div>
+    </div>
+  </div>
+</div>
+</div>
