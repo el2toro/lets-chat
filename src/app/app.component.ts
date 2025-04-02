@@ -22,5 +22,8 @@ export class AppComponent {
 
       this.matIconRegistry.addSvgIcon('ellipsis-vertical', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/ellipsis-vertical.svg'));
       this.matIconRegistry.addSvgIcon('phone', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/phone.svg'));
+
+      this.matIconRegistry.addSvgIcon('emoji', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/emoji.svg'));
+      this.matIconRegistry.addSvgIcon('send', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/send.svg'));
     }
 }

@@ -30,14 +30,14 @@
     </div>
 
     <div class="users-conversation">
-       <div autofocus class="conversation-item" *ngFor="let item of conversationItems">
+       <div autofocus class="conversation-item" *ngFor="let user of users" (click)="onUserClick(user)">
       <div class="image">
         <div class="avatar">
           <img src="assets/images/portrait1.jpg" alt="img">
           <div class="status"></div>
         </div>
         <div class="name">
-          <p>Candie Bosley</p>
+          <p>{{user.name}}</p>
           <p>Hi, this is process update</p>
         </div>
       </div>
@@ -80,37 +80,35 @@
     </div>
 
     <div class="messages">
-      <div class="user">
+      <div class="user" *ngFor="let message of messagesUser1">
        <div class="about">
         <img src="assets/images/portrait1.jpg" alt="img">
         <div class="name">
          <p>Candy Bosley</p>
-         <p>08.00 AM</p>
+         <p>{{message.sendAt}} AM</p>
         </div>
        </div>
 
        <div class="message">
-        <p>Hi, this is progress updates for this week</p><br>
-        <p>Don't you feel bored? Let's go in vacantion tomorrow</p>
+        <p>{{message.content}}</p><br>
        </div>
       </div>
 
-      <div class="user-response">
+      <div class="user-response" *ngFor="let message of messagesUser2">
         <div class="about">   
           <div class="name">
            <p>You</p>
-           <p>09.45 AM</p>
+           <p>{{message.sendAt}} AM</p>
           </div>
           <img src="assets/images/portrait1.jpg" alt="img">
         </div>
  
         <div class="message">
-         <p>Ok, thanks for the progress update</p><br>
-         <p>Wow, that's awsome, realy, where are we going on vacation?</p>
+         <p>{{message.content}}</p><br>
         </div>
        </div>
 
-       <div class="user">
+       <!-- <div class="user">
         <div class="about">
           <img src="assets/images/portrait1.jpg" alt="img">
         <div class="name">
@@ -126,7 +124,21 @@
            <img src="" alt="img">
          </div>
         </div>
-       </div>
+       </div> -->
+
+      <div class="send-message">
+        <button class="emoji-button">
+          <mat-icon svgIcon="emoji"></mat-icon>
+        </button>
+
+        <div class="vertical-line"></div>
+        
+        <input type="text" placeholder="Type your message here..." [(ngModel)]="messageContent">
+        
+        <button class="send-button" (click)="sendMessage()">
+          <mat-icon svgIcon="send"></mat-icon>
+        </button>
+      </div>
     </div>
   </div>
 </div>

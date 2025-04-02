@@ -407,5 +407,64 @@
             }
         }
       }
+
+      .send-message{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 40px;
+        width: 100%;
+        background-color: white;
+        border-radius: 30px;
+        padding: 10px;
+
+        .emoji-button{
+            background-color: transparent;
+            border: none;
+            margin-left: 10px;
+
+            mat-icon{
+
+            }
+
+            &:hover{
+                cursor: pointer;
+                opacity: 0.7;
+            }
+        }
+
+        input{
+          width: 70%;
+          height: 80%;
+          border: none;
+          outline: none;
+          font-size: 1rem;
+        }
+
+        .vertical-line{
+          height: 70%;
+          border: 1px solid #C4C4C4;
+        }
+
+        .send-button{
+            background-color: #4784DE;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            mat-icon{
+
+            }
+
+            &:hover{
+                cursor: pointer;
+                opacity: 0.7;
+            }
+        }
+      }
     }
 }
