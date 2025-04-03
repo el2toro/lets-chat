@@ -30,7 +30,7 @@
     </div>
 
     <div class="users-conversation">
-       <div autofocus class="conversation-item" *ngFor="let user of users" (click)="onUserClick(user)">
+      <div tabindex="0" autofocus class="conversation-item" *ngFor="let user of users" (click)="onUserClick(user)">
       <div class="image">
         <div class="avatar">
           <img src="assets/images/portrait1.jpg" alt="img">
@@ -80,38 +80,7 @@
     </div>
 
     <div class="messages" #chatContainer>
-      <!-- <div class="user" *ngFor="let message of messages">
-       <div class="about">
-        <img src="assets/images/portrait1.jpg" alt="img">
-        <div class="name">
-         <p>Candy Bosley</p>
-         <p>{{message.sendAt}} AM</p>
-        </div>
-       </div>
-
-       <div class="message">
-        <p>{{message.content}}</p><br>
-       </div>
-      </div> -->
-
-      <!-- <app-user-message [messages]="selectedUserMessages" [userFullName]="getSelectedUserFullName()"></app-user-message> -->
-
-      <!-- <div class="user-response" *ngFor="let message of messages">
-        <div class="about" *ngIf="isSendByLoggedInUser(message.id)">   
-          <div class="name">
-           <p>You</p>
-           <p>{{message.sendAt}} AM</p>
-          </div>
-          <img src="assets/images/portrait1.jpg" alt="img">
-        </div>
- 
-        <div class="message">
-         <p>{{message.content}}</p><br>
-        </div>
-       </div> -->
-
-       <!-- <app-user-message-response [messages]="loggedInUserMessages"></app-user-message-response> -->
-       <ng-template appDynamicHost></ng-template>
+      <ng-template appDynamicHost></ng-template>
 
       <div class="send-message">
         <button class="emoji-button">

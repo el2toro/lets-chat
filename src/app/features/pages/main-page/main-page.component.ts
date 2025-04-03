@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { UserMessageComponent } from "../../components/user-message/user-message.component";
 import { DynamicHostDirective } from '../../../directives/dynamic-host.directive';
+import { SignalrService } from '../../services/signalr.service';
 
 @Component({
   selector: 'app-main-page',
@@ -22,13 +23,13 @@ export class MainPageComponent implements AfterViewInit  {
 
   messages = <MessageModel[]>[];
   users = <UserModel[]>[];
-  selectedConversation = <MessageModel[]>[];
   message = new MessageModel();
   messageContent = '';
   loggedInUser = new UserModel;
   selectedUser = new UserModel;
   userClicked = false;
   isLoggedInUserMessage = false;
+  receivedMessage = '';
 
   getLoggedInUserFullName() : string{
    return this.loggedInUser.name + ' ' + this.loggedInUser.surname;
@@ -44,11 +45,23 @@ export class MainPageComponent implements AfterViewInit  {
 
   constructor(private userService: UserService, 
     private messageService: MessageService, 
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private signalrService: SignalrService) { }
 
   ngAfterViewInit(): void {
     this.getUsers();
     this.setLogedInUser();
+    // Start SignalR connection when component initializes
+    this.signalrService.startConnection();
+
+    // Subscribe to received messages
+    this.signalrService.messages$.subscribe((message) => {
+      this.messages.push(message);
+      
+      if(message.senderId !== this.loggedInUser.id){
+        this.playSound();
+      }
+    });
   }
 
   getUsers(){
@@ -87,6 +100,9 @@ export class MainPageComponent implements AfterViewInit  {
 
   sendMessage(){
     const message = this.buildMessage();
+
+    this.signalrService.sendMessage(message);
+   // this.message = '';  // Clear the input field
 
     this.messageService.sendMessage(message).subscribe({
       next: () => this.messageContent = ''
@@ -128,5 +144,12 @@ export class MainPageComponent implements AfterViewInit  {
 
   private sortMessages(): MessageModel[]{
     return this.messages.sort((a, b) => (new Date(a.sendAt).getTime() - new Date(b.sendAt).getTime()));
+  }
+
+  private playSound(): void {
+    const audio = new Audio('assets/sounds/notification.wav');  
+    audio.play().catch((error) => {
+      console.error("Error playing sound:", error);
+    });
   }
 }

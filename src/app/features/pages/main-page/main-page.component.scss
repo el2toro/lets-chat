@@ -4,7 +4,6 @@
 
     .app{
       border-radius: 20px;
-      
       display: flex;
       background-color: white;
 
@@ -116,10 +115,12 @@
        .users-conversation{
         height: 75vh;
         overflow-y: scroll;
+        padding: 0px 20px;
+
         .conversation-item{
             display: flex;
             justify-content: space-between;
-            padding: 10px 60px 0px 30px;
+            padding: 10px 20px 0px 20px;
             border-radius: 20px;
 
             .image{
@@ -192,8 +193,12 @@
             }
 
             &:focus{
-                //TODO: not working, verify
                 background-color: #4784DE;
+                outline: none;
+            }
+
+            &:hover{
+                cursor: pointer;
             }
         }
        }
