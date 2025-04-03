@@ -1,26 +1,20 @@
 <div class="login-container">
   <mat-card>
-    <mat-card-title>Login</mat-card-title>
-    <form formGroup="loginForm" (ngSubmit)="login()">
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email" type="email" />
-        <mat-error *ngIf="formControls['email'].invalid && formControls['email'].touched">
-          Valid email is required.
-        </mat-error>
-      </mat-form-field>
+    <mat-card-title>Welcome Back</mat-card-title>
+    <mat-card-subtitle>Please enter your credentials to sign in</mat-card-subtitle>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
-        <input matInput formControlName="password" type="password" />
-        <mat-error *ngIf="formControls['password'].invalid && formControls['password'].touched">
-          Password must be at least 6 characters long.
-        </mat-error>
-      </mat-form-field>
-
-      <button mat-raised-button color="primary" type="submit"  (click)="login()">
-        Login
+    <form [formGroup]="loginForm">
+      <input matInput formControlName="username" type="text"/>
+      <input matInput formControlName="password" type="password"/>
+      <button 
+        class="signin-button" 
+        mat-raised-button
+        type="submit" 
+        (click)="login()"
+        [disabled]="loginForm.invalid">
+        Sign In
       </button>
+      <p class="signup-link">Don't have an account? <a routerLink="/register">Sign up</a></p>
     </form>
   </mat-card>
 </div>

@@ -1,27 +1,38 @@
-// Import necessary modules
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [MatButtonModule, MatCardModule, MatInputModule, CommonModule]
+  imports: [MatButtonModule, MatCardModule, MatInputModule, CommonModule, MatIconModule, ReactiveFormsModule ]
 })
 export class LoginComponent {
-  loginForm: FormGroup;
-  isSubmitted = false;
+  loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
+    this.buildForm();
+    this.onFormChange();
+  }
+
+  buildForm(){
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      username: ['', [Validators.required, Validators.minLength(4)]],
+      password: ['', [Validators.required, Validators.minLength(4)]]
     });
+  }
+
+  onFormChange(){
+    this.loginForm.valueChanges.subscribe({
+      next: () => console.log(this.loginForm.value)
+    })
   }
 
   get formControls() {
@@ -29,10 +40,11 @@ export class LoginComponent {
   }
 
   login() {
-    console.log('it works')
-    this.isSubmitted = true;
-    if (true) {
-      localStorage.setItem('user', JSON.stringify(this.loginForm.value)); // Simulate login
+    if (this.loginForm.valid) {
+      this.authService.login( this.loginForm.controls['username'].value, this.loginForm.get('password')?.value).subscribe({
+        next: (data) => localStorage.setItem('user', JSON.stringify(data.user))
+      });
+      
       this.router.navigate(['']);
     }
   }

@@ -3,11 +3,70 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background: linear-gradient(135deg, #c8c9cd, #4784DE);
   }
   
   mat-card {
-    width: 350px;
-    padding: 20px;
+    width: 400px;
+    padding: 30px;
     text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+
+        input{
+            height: 50px;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            padding: 0px 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    }
+  }
+  
+  mat-card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  mat-card-subtitle {
+    font-size: 14px;
+    color: #757575;
+    margin-bottom: 20px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  button {
+    width: 100%;
+    margin-top: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    height: 50px;
+
+    &:hover{
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        opacity: 0.8;  
+    }
+  }
+  
+  .signup-link {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .signup-link a {
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
   }
   
