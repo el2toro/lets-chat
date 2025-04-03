@@ -1,3 +1,13 @@
-<p>
-  user-message-response works!
-</p>
+<div class="user-response" *ngFor="let message of messages">
+  <div class="about">   
+    <div class="name">
+     <p>You</p>
+     <p>{{ message.sendAt }} AM</p>
+    </div>
+    <img src="assets/images/portrait1.jpg" alt="img">
+  </div>
+
+  <div class="message">
+   <p>{{ message.content }}</p><br>
+  </div>
+</div>
