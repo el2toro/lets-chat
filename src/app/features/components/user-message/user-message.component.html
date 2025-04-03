@@ -1,3 +1,13 @@
-<p>
-  user-message works!
-</p>
+<div class="user" *ngFor="let message of messages">
+  <div class="about">
+   <img src="assets/images/portrait1.jpg" alt="img">
+   <div class="name">
+    <p>{{ userFullName }}</p>
+    <p>{{message.sendAt}} AM</p>
+   </div>
+  </div>
+
+  <div class="message">
+   <p>{{ message.content }}</p><br>
+  </div>
+</div>
