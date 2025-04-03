@@ -11,7 +11,7 @@
         </div>
         <div class="name">
            <p>Good Morning</p>
-           <p>Michele Laurene</p>
+           <p>{{ getLoggedInUserFullName() }}</p>
         </div>
       </div>
 
@@ -51,8 +51,8 @@
     </div>
   </div>
 
-  <div class="single-conversation">
-    <div class="heading">
+  <div class="single-conversation" *ngIf="userClicked">
+    <div class="heading" >
       <div class="user">
         <div class="avatar">
           <img src="assets/images/portrait1.jpg" alt="img">
@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="name">
-           <p>Candy Bosley</p>
+           <p>{{ getSelectedUserFullName() }}</p>
            <p>Last seen Yesterday at 02.30PM</p>
         </div>
       </div>
@@ -79,8 +79,8 @@
       </div>
     </div>
 
-    <div class="messages">
-      <div class="user" *ngFor="let message of messagesUser1">
+    <div class="messages" #chatContainer>
+      <!-- <div class="user" *ngFor="let message of messages">
        <div class="about">
         <img src="assets/images/portrait1.jpg" alt="img">
         <div class="name">
@@ -92,10 +92,12 @@
        <div class="message">
         <p>{{message.content}}</p><br>
        </div>
-      </div>
+      </div> -->
 
-      <div class="user-response" *ngFor="let message of messagesUser2">
-        <div class="about">   
+      <!-- <app-user-message [messages]="selectedUserMessages" [userFullName]="getSelectedUserFullName()"></app-user-message> -->
+
+      <!-- <div class="user-response" *ngFor="let message of messages">
+        <div class="about" *ngIf="isSendByLoggedInUser(message.id)">   
           <div class="name">
            <p>You</p>
            <p>{{message.sendAt}} AM</p>
@@ -106,25 +108,10 @@
         <div class="message">
          <p>{{message.content}}</p><br>
         </div>
-       </div>
-
-       <!-- <div class="user">
-        <div class="about">
-          <img src="assets/images/portrait1.jpg" alt="img">
-        <div class="name">
-         <p>Candy Bosley</p>
-         <p>15.50 PM</p>
-        </div>
-        </div>
- 
-        <div class="message">
-         <p>I have a good idea, how about we see the green scenary in my grandmother's hometown, so we can fresh there</p>
-         <div class="image-attachment">
-           <img src="" alt="img">
-           <img src="" alt="img">
-         </div>
-        </div>
        </div> -->
+
+       <!-- <app-user-message-response [messages]="loggedInUserMessages"></app-user-message-response> -->
+       <ng-template appDynamicHost></ng-template>
 
       <div class="send-message">
         <button class="emoji-button">

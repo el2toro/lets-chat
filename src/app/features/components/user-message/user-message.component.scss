@@ -1,11 +1,11 @@
 .user{
-    display: flex;
-    flex-direction: column;
+  //  display: flex;
+    //flex-direction: column;
 
     .about{
         display: flex;      
         align-items: center;
-
+        margin-bottom: 20px;
 
         img{
             width: 48px;
@@ -31,6 +31,8 @@
     }
 
     .message{
+        
+
         p{
             font-size: 0.8rem;
             color: #121212;
@@ -38,6 +40,61 @@
             background-color: white;
             padding: 10px;
             display: inline-block;
+            margin-top: -20px;
         }
     }
 }
+
+.user-response{
+
+    .user-response-about{
+     display: flex;
+     justify-content: flex-end;
+     align-items: center;
+     margin-bottom: 40px;
+
+     img{
+         width: 48px;
+         height: 48px;
+         border-radius: 50%;
+         object-fit: cover;
+         order: 2;
+     }
+
+     .name{
+         display: flex;
+         flex-direction: column;
+         margin-right: 20px;
+
+         p{
+             display: flex;
+             justify-content: flex-end;
+             font-family: var(--dmsans);
+             font-weight: bold;
+         }
+
+         p+p{
+             font-family: var(--poppins);
+             font-size: 0.6rem;
+             margin-top: -10px;
+         }
+     }
+    }
+
+     .message{
+         width: 100%;
+         display: grid;
+         justify-content: flex-end;
+
+         p{
+             color: white;
+             font-size: 0.8rem;
+             background-color: #4784DE;
+             padding: 10px;
+             border-radius: 20px 0px 20px 20px;
+             font-family: var(--poppins);
+             margin-top: -20px;
+         }
+     }
+ }
+

@@ -6,4 +6,5 @@ export class MessageModel{
     sendAt = '';
     isDeleted = false;
     isRead = false;
+    hasResponse = false;
 }
