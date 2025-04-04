@@ -13,20 +13,10 @@ import { UserModel } from '../../models/user.model';
 export class UserMessageComponent implements OnInit {
  @Input() messages = <MessageModel[]>[];
  @Input() userFullName = '';
- @Input() loggedInUser!: UserModel;
+ @Input() loggedInUserId!: number;
 
   constructor() { }
 
   ngOnInit() {
   }
-
-  hasResponse(id: number) : boolean{
-    const index = this.messages.findIndex(m => m.id === id);
-
-    if(index === 0){
-      return this.messages[index].hasResponse
-    }
-
-    return this.messages[index - 1].hasResponse
-   }
 }

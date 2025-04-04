@@ -21,7 +21,9 @@ export class UserService {
     return this.httpClient.get<MessageModel[]>(this.baseUrl + `user/`, { params });
  }
 
- getUsers() : Observable<UserModel[]>{
-    return this.httpClient.get<UserModel[]>(this.baseUrl + `users`);
+ getUsers(senderId: number) : Observable<UserModel[]>{
+   const params = new HttpParams()
+   .set('senderId', Number(senderId))
+    return this.httpClient.get<UserModel[]>(this.baseUrl + `users`, { params });
  }
 }

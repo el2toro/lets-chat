@@ -1,8 +1,8 @@
-<div class="user" [ngClass]="{'user-response': message.senderId === loggedInUser.id}" *ngFor="let message of messages">
-  <div class="about" [ngClass]="{'user-response-about': message.senderId === loggedInUser.id}" *ngIf="!hasResponse(message.id)">
+<div class="user" [ngClass]="{'user-response': message.senderId === loggedInUserId}" *ngFor="let message of messages">
+  <div class="about" [ngClass]="{'user-response-about': message.senderId === loggedInUserId}">
    <img src="assets/images/portrait1.jpg" alt="img">
    <div class="name">
-    <p>{{ message.senderId === loggedInUser.id ? 'You' : userFullName }}</p>
+    <p>{{ message.senderId === loggedInUserId ? 'You' : userFullName }}</p>
     <p>{{ message.sendAt | date: 'HH:mm'}}</p>
    </div>
   </div>

@@ -5,13 +5,13 @@
       <div class="user">
         <div class="avatar">
           <img src="assets/images/portrait1.jpg" alt="img">
-          <div class="status">
+          <div class="status" *ngIf="isUserOnline(loggedInUserId)">
 
           </div>
         </div>
         <div class="name">
            <p>Good Morning</p>
-           <p>{{ getLoggedInUserFullName() }}</p>
+           <p>{{ loggedInUserFullName }}</p>
         </div>
       </div>
 
@@ -30,21 +30,21 @@
     </div>
 
     <div class="users-conversation">
-      <div tabindex="0" autofocus class="conversation-item" *ngFor="let user of users" (click)="onUserClick(user)">
+      <div tabindex="0" class="conversation-item" *ngFor="let user of users" (click)="onUserClick(user)">
       <div class="image">
         <div class="avatar">
           <img src="assets/images/portrait1.jpg" alt="img">
-          <div class="status"></div>
+          <div class="status" *ngIf="isUserOnline(user.id)"></div>
         </div>
         <div class="name">
           <p>{{user.name}}</p>
-          <p>Hi, this is process update</p>
+          <p>{{ user.lastMessage }}</p>
         </div>
       </div>
       <div class="time">
-         <p>09:59</p>
-         <div class="badge">
-            <p>1</p>
+         <p>{{ user.lastMessageSendAt | date: 'HH:mm'}}</p>
+         <div class="badge" *ngIf="user.messageCount > 0">
+            <p>{{ user.messageCount }}</p>
          </div>
       </div>
     </div>

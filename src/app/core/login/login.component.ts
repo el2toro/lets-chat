@@ -19,7 +19,6 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
     this.buildForm();
-    this.onFormChange();
   }
 
   buildForm(){
@@ -29,12 +28,6 @@ export class LoginComponent {
     });
   }
 
-  onFormChange(){
-    this.loginForm.valueChanges.subscribe({
-      next: () => console.log(this.loginForm.value)
-    })
-  }
-
   get formControls() {
     return this.loginForm.controls;
   }
@@ -42,10 +35,14 @@ export class LoginComponent {
   login() {
     if (this.loginForm.valid) {
       this.authService.login( this.loginForm.controls['username'].value, this.loginForm.get('password')?.value).subscribe({
-        next: (data) => localStorage.setItem('user', JSON.stringify(data.user))
+        next: (response) => {
+          this.authService.saveToken(response.token);
+          this.authService.saveLoggedInUserFullName(response.fullName);
+          this.authService.saveLoggedInUserId(response.userId);
+
+          this.router.navigate(['']);
+        }
       });
-      
-      this.router.navigate(['']);
     }
   }
 }
