@@ -27,4 +27,11 @@ export class MessageService {
   markMessagesAsRead(senderId: number, receiverId: number) : Observable<any>{
     return this.httpClient.post<any>(`${this.baseUrl}messages`, { senderId, receiverId });
   }
+
+   getMessages(senderId: Number, receiverId: Number) : Observable<MessageModel[]>{
+    const params = new HttpParams()
+   .set('senderId', Number(senderId))
+   .set('receiverId', Number(receiverId));
+    return this.httpClient.get<MessageModel[]>(this.baseUrl + `messages/`, { params });
+ }
 }

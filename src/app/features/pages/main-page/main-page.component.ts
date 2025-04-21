@@ -23,8 +23,7 @@ export class MainPageComponent implements AfterViewInit  {
   @ViewChild('chatContainer') chatContainer!: ElementRef;
 
   messages = <MessageModel[]>[];
-  users = <UserModel[]>[];
-  message = new MessageModel();
+  users: UserModel[] = [];
   messageContent = '';
   loggedInUserId = 0;
   loggedInUserFullName = ''
@@ -33,13 +32,14 @@ export class MainPageComponent implements AfterViewInit  {
 
   onlineUsers: Number[] = [];
   private onlineUsersSubscription!: Subscription;
+  private usersSubscription!: Subscription;
 
   getSelectedUserFullName() : string{
     return this.selectedUser.fullName;
   }
 
   isUserOnline(userId: number) : boolean{
-    return this.onlineUsers.some(u => Number(u) === Number(userId));
+    return this.onlineUsers.some(u => u === userId);
   }
 
   constructor(private userService: UserService, 
@@ -68,11 +68,21 @@ export class MainPageComponent implements AfterViewInit  {
         this.onlineUsers = users;
       }
     );
+
+    this.usersSubscription = this.signalrService.users$.subscribe(
+      (users) => {
+        this.users = [...users];
+      }
+    );
   }
 
   ngOnDestroy(): void {
     if (this.onlineUsersSubscription) {
       this.onlineUsersSubscription.unsubscribe();
+    }
+
+    if (this.usersSubscription) {
+      this.usersSubscription.unsubscribe();
     }
   }
 
@@ -93,25 +103,21 @@ export class MainPageComponent implements AfterViewInit  {
     }, 100);
 
     this.messageService.markMessagesAsRead(this.loggedInUserId, this.selectedUser.id).subscribe({
-      next: () => console.log('messages marked as read')
+      next: () => {
+        this.signalrService.getUsers(this.loggedInUserId);
+        console.log(this.users)
+      }
     })
   }
 
   getMessages(){
     this.messages = [];
-    this.userService.getMessages(this.loggedInUserId, this.selectedUser.id).subscribe({
+    this.messageService.getMessages(this.loggedInUserId, this.selectedUser.id).subscribe({
       next: (response: MessageModel[]) => {
         this.messages.push(...response);
         this.loadComponent();
       }
     });
-
-    this.userService.getMessages(this.selectedUser.id, this.loggedInUserId).subscribe({
-      next: (response: MessageModel[]) => { 
-        this.messages.push(...response);
-        this.loadComponent();
-      }
-    })
   }
 
   sendMessage(){
@@ -120,7 +126,10 @@ export class MainPageComponent implements AfterViewInit  {
     this.signalrService.sendMessage(message);
 
     this.messageService.sendMessage(message).subscribe({
-      next: () => this.messageContent = ''
+      next: () => {
+        this.messageContent = '';
+        this.signalrService.getUsers(this.loggedInUserId);
+      }
     })
   }
 

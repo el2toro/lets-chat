@@ -37,7 +37,7 @@
           <div class="status" *ngIf="isUserOnline(user.id)"></div>
         </div>
         <div class="name">
-          <p>{{user.name}}</p>
+          <p>{{ user.name }}</p>
           <p>{{ user.lastMessage }}</p>
         </div>
       </div>
@@ -56,7 +56,7 @@
       <div class="user">
         <div class="avatar">
           <img src="assets/images/portrait1.jpg" alt="img">
-          <div class="status" *ngIf="false">
+          <div class="status" *ngIf="isUserOnline(selectedUser.id)">
 
           </div>
         </div>

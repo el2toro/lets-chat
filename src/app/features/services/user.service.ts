@@ -14,12 +14,12 @@ export class UserService {
  constructor(private httpClient: HttpClient){
  }
 
- getMessages(userId: Number, withUserId: Number) : Observable<MessageModel[]>{
-    const params = new HttpParams()
-   .set('userId', Number(userId))
-   .set('withUserId', Number(withUserId));
-    return this.httpClient.get<MessageModel[]>(this.baseUrl + `user/`, { params });
- }
+//  getMessages(userId: Number, withUserId: Number) : Observable<MessageModel[]>{
+//     const params = new HttpParams()
+//    .set('userId', Number(userId))
+//    .set('withUserId', Number(withUserId));
+//     return this.httpClient.get<MessageModel[]>(this.baseUrl + `user/`, { params });
+//  }
 
  getUsers(senderId: number) : Observable<UserModel[]>{
    const params = new HttpParams()

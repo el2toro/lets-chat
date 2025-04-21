@@ -11,8 +11,10 @@ import { UserModel } from '../models/user.model';
 export class SignalrService {
   private hubConnection!: HubConnection;
   private readonly _messageSubject = new BehaviorSubject<MessageModel>(new MessageModel());
+
   private readonly _usersSubject = new BehaviorSubject<UserModel[]>(<UserModel[]>[]);
   public readonly users$ = this._usersSubject.asObservable();
+
   private readonly _onlineUsersSubject = new BehaviorSubject<Number[]>([]);
   public readonly onlineUsers$ = this._onlineUsersSubject.asObservable();
 
@@ -65,9 +67,24 @@ public sendMessage(message: MessageModel): void {
 }
 
 // Method to send messages to the SignalR hub
-public getUsers(message: MessageModel): void {
-  this.hubConnection.invoke('GetUsers').then((users: Number[]) => {
-    this._onlineUsersSubject.next(users);
+public getUsers(senderId: number): void {
+  // let model = new UserModel()
+  // model.fullName = 'adcaSDV'
+  // model.id = 2;
+  // model.lastMessage = 'some gibrish';
+  // model.messageCount  = 1;
+  // model.lastMessageSendAt = '2025-04-04T17:50'
+
+  // this._usersSubject.next([model]);
+  this.hubConnection.invoke('GetUsers', senderId).then((users: UserModel[]) => {
+    console.log("Received users:", users);
+      
+      if (Array.isArray(users)) {
+        this._usersSubject.next(users); // ✅ Only update if it's an array
+      } else {
+        console.error("Expected an array, but got:", users);
+        //this._usersSubject.next([]); // Avoid assigning non-array values
+      }
   });
 }
 
