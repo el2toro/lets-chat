@@ -1,0 +1,29 @@
+<div class="signup-container">
+  <mat-card>
+    <mat-card-title>Sign Up</mat-card-title>
+    <mat-card-subtitle>Please enter your credentials to sign up</mat-card-subtitle>
+
+    <form [formGroup]="signupForm">
+      <input matInput formControlName="name" type="text" placeholder="Name"/>
+      <!-- <div *ngIf="signupForm.get('name')?.hasError('required') && signupForm.get('name')?.touched">
+        Email is required
+      </div> -->
+      <input matInput formControlName="surename" type="text" placeholder="Surename"/>
+      <input matInput formControlName="username" type="text" placeholder="Username"/>
+      <input matInput formControlName="email" type="text" placeholder="Email"/>
+      <input matInput formControlName="password" type="password" placeholder="Password"/>
+      <input matInput formControlName="repeatPassword" type="password" placeholder="Repeat password"/>
+      <button 
+        class="signup-button" 
+        mat-raised-button
+        type="submit" 
+        (click)="signup()"
+        [disabled]="!passwordMatch() && signupForm.invalid">
+        Sign Up
+      </button>
+      <p class="signup-link">Already registred? 
+        <a (click)="signIn()">Sign In</a>
+      </p>
+    </form>
+  </mat-card>
+</div>
