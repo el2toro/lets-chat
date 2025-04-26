@@ -105,7 +105,6 @@ export class MainPageComponent implements AfterViewInit  {
     this.messageService.markMessagesAsRead(this.loggedInUserId, this.selectedUser.id).subscribe({
       next: () => {
         this.signalrService.getUsers(this.loggedInUserId);
-        console.log(this.users)
       }
     })
   }
@@ -145,9 +144,6 @@ export class MainPageComponent implements AfterViewInit  {
   setLogedInUser(){
     this.loggedInUserId = this.authService.getLoggedInUserId();
     this.loggedInUserFullName = this.authService.getLoggedInUserFullName();
-
-    console.log('logged in user id: ', this.loggedInUserId)
-    console.log('full name: ', this.loggedInUserFullName)
   }
 
   private loadComponent() {

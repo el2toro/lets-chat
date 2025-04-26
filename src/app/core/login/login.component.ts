@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -15,6 +15,7 @@ import { AuthService } from '../../services/auth.service';
   imports: [MatButtonModule, MatCardModule, MatInputModule, CommonModule, MatIconModule, ReactiveFormsModule ]
 })
 export class LoginComponent {
+  @Output() signupEvent = new EventEmitter<void>();
   loginForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
@@ -44,5 +45,9 @@ export class LoginComponent {
         }
       });
     }
+  }
+
+  signup() {
+    this.signupEvent.emit();
   }
 }

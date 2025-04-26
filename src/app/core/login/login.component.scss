@@ -68,5 +68,10 @@
     color: #ffffff;
     font-weight: bold;
     text-decoration: none;
+    margin-left: 5px;
+
+    &:hover{
+      opacity: 0.8;
+    }
   }
   

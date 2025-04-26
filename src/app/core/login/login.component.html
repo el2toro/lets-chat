@@ -14,7 +14,9 @@
         [disabled]="loginForm.invalid">
         Sign In
       </button>
-      <p class="signup-link">Don't have an account? <a routerLink="/register">Sign up</a></p>
+      <p class="signup-link">Don't have an account? 
+        <a (click)="signup()">Sign up</a>
+      </p>
     </form>
   </mat-card>
 </div>
